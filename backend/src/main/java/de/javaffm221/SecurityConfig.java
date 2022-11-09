@@ -20,6 +20,7 @@ import org.springframework.security.web.SecurityFilterChain;
 public class SecurityConfig {
 
     private final AppUserService appUserService;
+    public final static BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
 
     @Bean
     SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
@@ -27,15 +28,23 @@ public class SecurityConfig {
                 .csrf().disable()
                 .httpBasic().and()
                 .authorizeRequests()
-                .antMatchers(HttpMethod.GET, "/api/pets", "/api/trucks", "/api/login","/api/logout").authenticated()
-                .antMatchers(HttpMethod.POST, "/api/pets", "/api/trucks").hasRole("ADMIN")
+                .antMatchers(HttpMethod.GET
+                        , "/api/pets"
+                        , "/api/trucks"
+                        , "/api/login"
+                        ,"/api/logout"
+                        ,"/api/me").authenticated()
+                .antMatchers(HttpMethod.POST
+                        , "/api/pets"
+                        , "/api/trucks"
+                        ,"/api").hasRole("ADMIN")
                 .anyRequest().denyAll()
                 .and().build();
     }
 
     @Bean
     public PasswordEncoder encoder() {
-        return new BCryptPasswordEncoder();
+        return passwordEncoder;
     }
 
     @Bean
