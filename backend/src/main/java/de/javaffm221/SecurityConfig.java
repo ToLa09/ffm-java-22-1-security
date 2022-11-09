@@ -27,8 +27,8 @@ public class SecurityConfig {
                 .csrf().disable()
                 .httpBasic().and()
                 .authorizeRequests()
-                .antMatchers(HttpMethod.GET, "/api/pets", "/api/login","/api/logout").authenticated()
-                .antMatchers(HttpMethod.POST, "/api/pets").hasRole("ADMIN")
+                .antMatchers(HttpMethod.GET, "/api/pets", "/api/trucks", "/api/login","/api/logout").authenticated()
+                .antMatchers(HttpMethod.POST, "/api/pets", "/api/trucks").hasRole("ADMIN")
                 .anyRequest().denyAll()
                 .and().build();
     }
