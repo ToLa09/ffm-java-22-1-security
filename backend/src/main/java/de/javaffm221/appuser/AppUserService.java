@@ -17,13 +17,14 @@ public class AppUserService {
     }
 
     public void addUser(AppUser newAppUser){
-        if(newAppUser.role() == null){
-            newAppUser.withRole(AppUserRole.BASIC);
-        }
         if(findByUsername(newAppUser.username()) != null){
             throw new UserAlreadyExistsException("Username already exists");
         }
         String encodedPassword = SecurityConfig.passwordEncoder.encode(newAppUser.password());
-        repository.save(newAppUser.withPassword(encodedPassword));
+        if(newAppUser.role() == null){
+            repository.save(newAppUser.withPassword(encodedPassword).withRole(AppUserRole.BASIC));
+        } else {
+            repository.save(newAppUser.withPassword(encodedPassword));
+        }
     }
 }
