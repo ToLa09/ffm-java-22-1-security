@@ -1,9 +1,11 @@
 package de.javaffm221.appuser;
 
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpStatus;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.server.ResponseStatusException;
 
 import javax.servlet.http.HttpSession;
 
@@ -27,6 +29,12 @@ public class AppUserController {
     }
     @PostMapping
     public void addUser(@RequestBody AppUser newAppUser){
-        service.addUser(newAppUser);
+        try {
+            service.addUser(newAppUser);
+        } catch(IllegalArgumentException e) {
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, e.getMessage());
+        } catch(UserAlreadyExistsException e) {
+            throw new ResponseStatusException(HttpStatus.CONFLICT, e.getMessage());
+        }
     }
 }
