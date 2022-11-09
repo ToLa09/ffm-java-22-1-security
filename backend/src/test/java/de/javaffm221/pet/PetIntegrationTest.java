@@ -1,4 +1,4 @@
-package de.javaffm221firstMongoDB.pet;
+package de.javaffm221.pet;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;

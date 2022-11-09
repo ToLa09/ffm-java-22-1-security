@@ -1,7 +1,7 @@
-package de.javaffm221firstMongoDB;
+package de.javaffm221;
 
-import de.javaffm221firstMongoDB.appUser.AppUser;
-import de.javaffm221firstMongoDB.appUser.AppUserService;
+import de.javaffm221.appuser.AppUser;
+import de.javaffm221.appuser.AppUserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.http.HttpMethod;

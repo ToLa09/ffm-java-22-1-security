@@ -1,4 +1,4 @@
-package de.javaffm221firstMongoDB.appUser;
+package de.javaffm221.appuser;
 
 public record AppUser(
         String id,

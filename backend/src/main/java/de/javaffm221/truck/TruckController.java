@@ -1,4 +1,4 @@
-package de.javaffm221firstMongoDB.truck;
+package de.javaffm221.truck;
 
 import org.springframework.web.bind.annotation.*;
 

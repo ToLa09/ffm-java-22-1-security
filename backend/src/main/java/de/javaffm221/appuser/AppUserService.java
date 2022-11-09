@@ -1,4 +1,4 @@
-package de.javaffm221firstMongoDB.appUser;
+package de.javaffm221.appuser;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;

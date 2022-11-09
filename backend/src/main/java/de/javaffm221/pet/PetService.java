@@ -1,4 +1,4 @@
-package de.javaffm221firstMongoDB.pet;
+package de.javaffm221.pet;
 
 import org.springframework.stereotype.Service;
 

@@ -1,4 +1,4 @@
-package de.javaffm221firstMongoDB.truck;
+package de.javaffm221.truck;
 
 public record Truck(
         String id,
