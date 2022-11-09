@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 
 import javax.servlet.http.HttpSession;
+import javax.validation.Valid;
 
 @RestController
 @RequestMapping("/api")
@@ -28,11 +29,9 @@ public class AppUserController {
         return (User)SecurityContextHolder.getContext().getAuthentication().getPrincipal();
     }
     @PostMapping
-    public void addUser(@RequestBody AppUser newAppUser){
+    public void addUser(@RequestBody @Valid AppUser newAppUser){
         try {
             service.addUser(newAppUser);
-        } catch(IllegalArgumentException e) {
-            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, e.getMessage());
         } catch(UserAlreadyExistsException e) {
             throw new ResponseStatusException(HttpStatus.CONFLICT, e.getMessage());
         }
