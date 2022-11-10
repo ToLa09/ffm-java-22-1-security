@@ -25,10 +25,16 @@ public class AppUserController {
         httpSession.invalidate();
     }
     @GetMapping("/me")
-    public User getUser(){
-        return (User)SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+    public String getUser(){
+        return SecurityContextHolder.getContext().getAuthentication().getName();
     }
+    @GetMapping("/role")
+    public String getRole() {
+        return SecurityContextHolder.getContext().getAuthentication().getAuthorities().toString();
+    }
+
     @PostMapping
+    @ResponseStatus(code = HttpStatus.CREATED)
     public void addUser(@RequestBody @Valid AppUser newAppUser){
         try {
             service.addUser(newAppUser);

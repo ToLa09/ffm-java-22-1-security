@@ -28,12 +28,13 @@ public class SecurityConfig {
                 .csrf().disable()
                 .httpBasic().and()
                 .authorizeRequests()
+                .antMatchers(HttpMethod.GET,"/api/me").permitAll()
                 .antMatchers(HttpMethod.GET
                         , "/api/pets"
                         , "/api/trucks"
                         , "/api/login"
                         ,"/api/logout"
-                        ,"/api/me").authenticated()
+                        ,"/api/role").authenticated()
                 .antMatchers(HttpMethod.POST
                         , "/api/pets"
                         , "/api/trucks"
